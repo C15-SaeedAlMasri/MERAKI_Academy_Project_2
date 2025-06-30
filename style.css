@@ -5,4 +5,47 @@
    
   
 }
- 
+ .sliderClass{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10%;
+    
+   
+ }
+ #sliderBox{
+    display: flex;
+    flex-direction: row;
+    width: 500px;
+    height: 250px;
+    border: 2px solid red;
+  border-radius: 25px;
+  justify-content: space-between;
+  padding: 20px;
+  max-width: 600px;
+  margin: auto;
+ }
+ .imagDivSlider{
+   
+    object-fit: cover;
+    overflow: hidden
+   
+ }
+ .descDivSlider{
+    flex: 1;
+  padding: 0 20px;
+  text-align: right;
+ }
+ .separator {
+  width: 1px;
+  background-color: #ccc;
+  height: 100px;
+
+}
+#sliderImg{
+    width: 200px;
+    height: 260px;
+}
+.dropdown-list{
+   
+}
