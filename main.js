@@ -203,9 +203,15 @@ const sliderBox =$(` <div id="sliderBox">
         const catItems = $(`  <div class="catItemsClass">
         
           </div>`);
+          const FavItems = $(`  <div class="favItemsClass">
+        
+            </div>`);
           const itemsAreaCat =$(`
             <div class ="itemBoxCat"></div>
             `)
+            const itemsAreaFav =$(`
+              <div class ="itemBoxfav"></div>
+              `)
 mainDiv.append(navBar);
 navBar.append(imageLogo);
 navBar.append(menuBar);
@@ -216,7 +222,9 @@ main.append(slider);
 main.append(itemsArea);
 slider.append(sliderBox);
 mainDiv.append(catItems);
+mainDiv.append(FavItems);
 catItems.append(itemsAreaCat);
+FavItems.append(itemsAreaFav)
 
 
 
@@ -278,6 +286,15 @@ itemsAreaCat.css({
     "justify-content": "space-between",
     
 })
+itemsAreaFav.css({
+  "display": "grid",
+  "grid-template-columns":" 1fr 1fr 1fr 1fr",
+    "grid-template-rows":"1fr 1fr 1fr 1fr",
+    "object-fit": "cover",
+    "overflow": "hidden",
+    "justify-content": "space-between",
+    
+})
 const funShowItem =()=>{
   let imageNumber;
   foodRecipes.forEach((Element,ind)=>{
@@ -303,7 +320,9 @@ const funShowItem =()=>{
   const contantRate =$(`<img id= "imgRateCountant" src ="${imageNumber}" />`);
   const contantName = $(`<h2 id= " nameCountant">${Element.title}</h2>`);
   const contantDivFav =$(`<div class="fav"></div>`);
-  const addTofav =$(`<h4>Add To Favourit</h4>`);
+  const addTofav =$(`<button  class="fav-btn" id="${ind}">
+     Add to  <span class="heart" id="${ind}">♡</span>
+  </button>`);
   const iconFav =$(`<link rel="icon" type="image/x-icon" href="/images/favicon.ico">`)
   item.css({
     display: "flex",
@@ -332,8 +351,9 @@ funShowItem();
 
 
 // }
+let arryCat=[];
  $(".dropdown-list").on('change',function(e){
-  let arryCat=[];
+  
   itemsAreaCat.empty();
   const catSelect = $(this).val();
   if(catSelect=="all"){
@@ -368,10 +388,12 @@ const contantImg =$(`<img id ="imgeCountant" src ="${Element.imageSrc}" />`);
 const contantRate =$(`<img id= "imgRateCountant" src ="${imageNumber}" />`);
 const contantName = $(`<h2 id= " nameCountant">${Element.title}</h2>`);
 const contantDivFav =$(`<div class="fav"></div>`);
-const addTofav =$(`<h4>Add To Favourit</h4>`);
+const addTofavCat =$(`<button  class="fav-btn" id="${ind}">
+  Add   <span class="heart" id="${ind}">♡</span>
+</button>`);
 const iconFav =$(`<link rel="icon" type="image/x-icon" href="/images/favicon.ico">`)
 item.css({
-  display: "flex",
+  "display": "flex",
 "flex-direction": "column",
 "justify-content": "space-between",
 "object-fit": "cover",
@@ -385,15 +407,131 @@ item.append(contantImg);
 item.append(contantRate);
 item.append(contantName);
 item.append(contantDivFav);
-contantDivFav.append(addTofav);
+contantDivFav.append(addTofavCat);
 contantDivFav.append(iconFav)
 });
 main.hide();
 catItems.show();
+$('.fav-btn').on('click',function (e) {
+  
+  
+  $(this).toggleClass('active');
+  let heart = $(this).find('.heart');
+
+  console.log(arrayFav.includes(foodRecipes[e.target.id]))
+  if(arrayFav.includes(arryCat[e.target.id]))
+  {
+   
+    arrayFav.splice(e.target.id,1);
+    heart.text('♡');
+  }
+  else{
+      arrayFav.push(arryCat[e.target.id]);
+      console.log(arryCat[e.target.id]);
+      heart.text('♥');
+  }
+
+ 
+
+});
 
  })
  $('#home').click(function(){
   main.show();
   catItems.hide();
+  FavItems.hide();
   $('.dropdown-list').val($('.dropdown-list option:first').val());
  })
+
+
+let arrayFav=[];
+ $('.fav-btn').on('click',function (e) {
+  
+  
+  $(this).toggleClass('active');
+  let heart = $(this).find('.heart');
+
+  console.log(arrayFav.includes(foodRecipes[e.target.id]))
+  if(arrayFav.includes(foodRecipes[e.target.id]))
+  {
+   
+    arrayFav.splice(e.target.id,1);
+    heart.text('♡');
+  }
+  else{
+      arrayFav.push(foodRecipes[e.target.id]);
+      console.log(foodRecipes[e.target.id]);
+      heart.text('♥');
+  }
+
+ 
+
+});
+
+$('#favourite').click(function(){
+  itemsAreaFav.empty();
+  main.hide();
+  FavItems.show();
+  let imageNumber;
+  arrayFav.forEach((Element,ind)=>{
+    if(Element.rate==1){
+      imageNumber="";
+
+    }
+    else if(Element.rate==2){
+    imageNumber="https://www.shutterstock.com/image-vector/two-stars-icon-vector-260nw-1316819486.jpg";
+
+    }
+    else if(Element.rate==3){
+     imageNumber="https://www.shutterstock.com/image-vector/three-star-rating-icon-isolated-260nw-1711884229.jpg"
+    }
+    else if(Element.rate==4){
+      imageNumber="https://www.shutterstock.com/image-vector/four-stars-icon-vector-260nw-1316819477.jpg"
+    }
+    else{
+  imageNumber="https://www.shutterstock.com/image-vector/five-stars-rating-button-experience-260nw-1706225290.jpg"
+    }
+  const item =$(`<div class ="OneItem"></div>`)
+  const contantImg =$(`<img id ="imgeCountant" src ="${Element.imageSrc}" />`);
+  const contantRate =$(`<img id= "imgRateCountant" src ="${imageNumber}" />`);
+  const contantName = $(`<h2 id= " nameCountant">${Element.title}</h2>`);
+  const contantDivFav =$(`<div class="fav"></div>`);
+  const addTofav =$(`<button  class="fav-btn-remove" id="${ind}">
+    Remove from  <span class="heart id="${ind}">♡</span>
+  </button>`);
+  const iconFav =$(`<link rel="icon" type="image/x-icon" href="/images/favicon.ico">`)
+  item.css({
+    display: "flex",
+  "flex-direction": "column",
+  "justify-content": "space-between",
+  "object-fit": "cover",
+  "overflow": "hidden",
+  "border": "2px solid red",
+  "border-radius": "25px",
+  "margin": "20px"
+  })
+  itemsAreaFav.append(item);
+  item.append(contantImg);
+  item.append(contantRate);
+  item.append(contantName);
+  item.append(addTofav);
+  //contantDivFav.append(addTofav);
+  contantDivFav.append(iconFav)
+  
+
+  })
+  $('.fav-btn-remove').on('click',function (e) {
+  
+    console.log(e.target.id)
+      arrayFav.splice(e.target.id,1);
+      $(this).parent().remove();
+      
+      $('.heart').each(function () {
+        const heartId = $(this).attr('id');
+        const isInFav = arrayFav.includes(foodRecipes[heartId]);
+        $(this).text(isInFav ? '♥' : '♡');
+      });
+  });
+  
+ })
+
