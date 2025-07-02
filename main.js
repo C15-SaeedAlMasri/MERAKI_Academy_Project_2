@@ -146,14 +146,14 @@ const foodRecipes = [
   }
 ];
 
-let foodArrayFav = [];
+let foodArrayFav =JSON.parse(localStorage.getItem("foodArryFav"))||[];
 
 localStorage.setItem("foodArry", JSON.stringify(foodRecipes));
 localStorage.setItem("foodArryFav",JSON.stringify(foodArrayFav))
 
 const data = window.localStorage.getItem("foodArry");  
 const foodArray = JSON.parse(data);
-foodArrayFav = JSON.parse(localStorage.getItem("foodArryFav"))||[];
+ 
 let randomImage;
 
 
@@ -198,7 +198,8 @@ const menuBar = $(`
          <p id="home">Home</p>
      
          <p id="favourite">favourite</p>
-         <input type="text" name="search" placeholder="Search..">
+         <span class="search-icon" >🔍</span>
+         
         </div>`);
 const profilepic = $(`
     <div id="profilePic">
@@ -215,12 +216,17 @@ const sliderBox =$(` <div id="sliderBox">
           const FavItems = $(`  <div class="favItemsClass">
         
             </div>`);
+            const SearchDiv =$(`<div class ="searchClass"></div>`)
           const itemsAreaCat =$(`
             <div class ="itemBoxCat"></div>
             `)
             const itemsAreaFav =$(`
               <div class ="itemBoxfav"></div>
               `)
+              const searchAreaDiv = $(`<div class ="searchBox">
+                 <input id="search" type="text" oninput="funSearch()" name="search" placeholde
+         r="Search..">
+                </div>`)
 mainDiv.append(navBar);
 navBar.append(imageLogo);
 navBar.append(menuBar);
@@ -232,8 +238,10 @@ main.append(itemsArea);
 slider.append(sliderBox);
 mainDiv.append(catItems);
 mainDiv.append(FavItems);
+mainDiv.append(SearchDiv);
 catItems.append(itemsAreaCat);
-FavItems.append(itemsAreaFav)
+FavItems.append(itemsAreaFav);
+SearchDiv.append(searchAreaDiv)
 
 
 
@@ -304,9 +312,14 @@ itemsAreaFav.css({
     "justify-content": "space-between",
     
 })
+
 const funShowItem =()=>{
   let imageNumber;
   foodRecipes.forEach((Element,ind)=>{
+    let isFav = foodArrayFav.some(fav => fav.id === Element.id);
+    let heartText = isFav ? "♥" : "♡";
+     let heartColor = isFav ? "red" : "black";
+     
     if(Element.rate==1){
       imageNumber="";
 
@@ -330,8 +343,9 @@ const funShowItem =()=>{
   const contantName = $(`<h2 id= " nameCountant">${Element.title}</h2>`);
   const contantDivFav =$(`<div class="fav"></div>`);
   const addTofav =$(`<button  class="fav-btn" id="${ind}">
-     Add to  <span class="heart" id="${ind}">♡</span>
+     Add to  <span   class="heart" id="${ind}">${heartText}</span>
   </button>`);
+  addTofav.find('.heart').css("color", heartColor);
   const iconFav =$(`<link rel="icon" type="image/x-icon" href="/images/favicon.ico">`)
   item.css({
     display: "flex",
@@ -375,6 +389,9 @@ let arryCat=[];
   }
  console.log(arryCat);
  arryCat.forEach((Element,ind)=>{
+  let isFav = foodArrayFav.some(fav => fav.id === Element.id);
+    let heartText = isFav ? "♥" : "♡";
+     let heartColor = isFav ? "red" : "black";
   if(Element.rate==1){
     imageNumber="";
 
@@ -398,8 +415,9 @@ const contantRate =$(`<img id= "imgRateCountant" src ="${imageNumber}" />`);
 const contantName = $(`<h2 id= " nameCountant">${Element.title}</h2>`);
 const contantDivFav =$(`<div class="fav"></div>`);
 const addTofavCat =$(`<button  class="fav-btn" id="${ind}">
-  Add   <span class="heart" id="${ind}">♡</span>
+  Add to  <span   class="heart" id="${ind}">${heartText}</span>
 </button>`);
+addTofavCat.find('.heart').css("color", heartColor);
 const iconFav =$(`<link rel="icon" type="image/x-icon" href="/images/favicon.ico">`)
 item.css({
   "display": "flex",
@@ -427,6 +445,7 @@ $('.fav-btn').on('click',function (e) {
     heart.text('♡');
     foodArrayFav.splice ( (foodArrayFav.indexOf(foodRecipes[e.target.id])),1);
     localStorage.setItem("foodArryFav", JSON.stringify(foodArrayFav));
+   
   }
   else{
     heart.text('♥');
@@ -476,6 +495,7 @@ let arrayFav=[];
 $('#favourite').click(function(){
   itemsAreaFav.empty();
   main.hide();
+  catItems.hide();
   FavItems.show();
   let imageNumber;
   foodArrayFav.forEach((Element,ind)=>{
@@ -526,14 +546,21 @@ $('#favourite').click(function(){
 
   })
   $('.fav-btn-remove').on('click',function (e) {
-    //const id =  e.target.id;
+     
      let iteam = foodRecipes[e.target.id];
      foodArrayFav.splice(foodArrayFav.indexOf(iteam),1);
      localStorage.setItem("foodArryFav",JSON.stringify(foodArrayFav));
-    // $(`.heart#${id}`).text('♡');
-     //saeed
-      
+     $(this).closest('.OneItem').remove(); 
+   
   });
   
  })
+const funSearch=()=>{
+  let input = $("#search").val();
 
+  let arraySearch =foodRecipes.filter((Element)=>(Element.title.toLowerCase()).includes(input));
+  console.log(arraySearch);
+
+  console.log($("#search").val())
+}
+ 
