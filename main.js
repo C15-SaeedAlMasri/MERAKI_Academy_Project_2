@@ -146,7 +146,16 @@ const foodRecipes = [
   }
 ];
 
+let foodArrayFav = [];
+
+localStorage.setItem("foodArry", JSON.stringify(foodRecipes));
+localStorage.setItem("foodArryFav",JSON.stringify(foodArrayFav))
+
+const data = window.localStorage.getItem("foodArry");  
+const foodArray = JSON.parse(data);
+foodArrayFav = JSON.parse(localStorage.getItem("foodArryFav"))||[];
 let randomImage;
+
 
 const categoryDropdown = $(`
   <div class="dropdown">
@@ -413,25 +422,21 @@ contantDivFav.append(iconFav)
 main.hide();
 catItems.show();
 $('.fav-btn').on('click',function (e) {
-  
-  
-  $(this).toggleClass('active');
   let heart = $(this).find('.heart');
-
-  console.log(arrayFav.includes(foodRecipes[e.target.id]))
-  if(arrayFav.includes(arryCat[e.target.id]))
-  {
-   
-    arrayFav.splice(e.target.id,1);
+  if(foodArrayFav.includes(foodRecipes[e.target.id])){
     heart.text('♡');
+    foodArrayFav.splice ( (foodArrayFav.indexOf(foodRecipes[e.target.id])),1);
+    localStorage.setItem("foodArryFav", JSON.stringify(foodArrayFav));
   }
   else{
-      arrayFav.push(arryCat[e.target.id]);
-      console.log(arryCat[e.target.id]);
-      heart.text('♥');
+    heart.text('♥');
+    heart.css({
+      "color":"red"
+    })
+    foodArrayFav.push(foodRecipes[e.target.id]);
+  localStorage.setItem("foodArryFav", JSON.stringify(foodArrayFav));
   }
-
- 
+  
 
 });
 
@@ -446,24 +451,24 @@ $('.fav-btn').on('click',function (e) {
 
 let arrayFav=[];
  $('.fav-btn').on('click',function (e) {
-  
-  
-  $(this).toggleClass('active');
-  let heart = $(this).find('.heart');
-
-  console.log(arrayFav.includes(foodRecipes[e.target.id]))
-  if(arrayFav.includes(foodRecipes[e.target.id]))
-  {
    
-    arrayFav.splice(e.target.id,1);
+
+  let heart = $(this).find('.heart');
+  if(foodArrayFav.includes(foodRecipes[e.target.id])){
     heart.text('♡');
+    foodArrayFav.splice ( (foodArrayFav.indexOf(foodRecipes[e.target.id])),1);
+    localStorage.setItem("foodArryFav", JSON.stringify(foodArrayFav));
   }
   else{
-      arrayFav.push(foodRecipes[e.target.id]);
-      console.log(foodRecipes[e.target.id]);
-      heart.text('♥');
+    heart.text('♥');
+    heart.css({
+      "color":"red"
+    })
+    foodArrayFav.push(foodRecipes[e.target.id]);
+  localStorage.setItem("foodArryFav", JSON.stringify(foodArrayFav));
   }
-
+  
+   
  
 
 });
@@ -473,7 +478,7 @@ $('#favourite').click(function(){
   main.hide();
   FavItems.show();
   let imageNumber;
-  arrayFav.forEach((Element,ind)=>{
+  foodArrayFav.forEach((Element,ind)=>{
     if(Element.rate==1){
       imageNumber="";
 
@@ -521,16 +526,13 @@ $('#favourite').click(function(){
 
   })
   $('.fav-btn-remove').on('click',function (e) {
-  
-    console.log(e.target.id)
-      arrayFav.splice(e.target.id,1);
-      $(this).parent().remove();
+    //const id =  e.target.id;
+     let iteam = foodRecipes[e.target.id];
+     foodArrayFav.splice(foodArrayFav.indexOf(iteam),1);
+     localStorage.setItem("foodArryFav",JSON.stringify(foodArrayFav));
+    // $(`.heart#${id}`).text('♡');
+     //saeed
       
-      $('.heart').each(function () {
-        const heartId = $(this).attr('id');
-        const isInFav = arrayFav.includes(foodRecipes[heartId]);
-        $(this).text(isInFav ? '♥' : '♡');
-      });
   });
   
  })
