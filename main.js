@@ -172,7 +172,7 @@ const data = window.localStorage.getItem("foodArry");
 const foodArray = JSON.parse(data);
 
 let randomImage;
-
+let choose;
 const categoryDropdown = $(`
   <div class="dropdown">
     <label id="category">Category :</label>
@@ -234,12 +234,18 @@ const FavItems = $(`  <div class="favItemsClass">
 const SearchDiv = $(`<div class ="searchClass">
              
               </div>`);
+const chooseItem = $(`<div class="chooseClass">
+        
+            </div>`);
 const itemsAreaCat = $(`
             <div class ="itemBoxCat"></div>
             `);
 const itemsAreaFav = $(`
               <div class ="itemBoxfav"></div>
               `);
+const itemsAreaChoose = $(`
+                <div class ="sliderBox"></div>
+                `);
 const searchAreaDiv = $(`<div class ="searchBox">
                  <div id="myDiv">
       <span id="closeBtn">&times;</span></div>
@@ -263,6 +269,9 @@ mainDiv.append(SearchDiv);
 catItems.append(itemsAreaCat);
 FavItems.append(itemsAreaFav);
 SearchDiv.append(searchAreaDiv);
+mainDiv.append(chooseItem);
+chooseItem.append(itemsAreaChoose);
+chooseItem.hide();
 
 main.append(items);
 
@@ -329,14 +338,14 @@ itemsAreaFav.css({
   overflow: "hidden",
   "justify-content": "space-between",
 });
-$('#closeBtn').css({
-  'position': 'absolute',
-  'top': '5px',
-  'right': '10px',
-  'font-size': '20px',
-  'font-weight': 'bold',
-  'cursor': 'pointer',
-  'color': '#888'
+$("#closeBtn").css({
+  position: "absolute",
+  top: "5px",
+  right: "10px",
+  "font-size": "20px",
+  "font-weight": "bold",
+  cursor: "pointer",
+  color: "#888",
 });
 
 const funShowItem = () => {
@@ -568,13 +577,15 @@ $("#favourite").click(function () {
     $(this).closest(".OneItem").remove();
   });
 });
-let arraySearch=[];
-const funSearch = () => {
-  
-  let input = $("#search").val();
-  $('#results').remove()
+let arraySearch = [];
 
-    arraySearch = foodRecipes.filter((Element) =>
+const funSearch = () => {
+  choose=""
+  $("#search").val("");
+  let input = $("#search").val();
+  $("#results").remove();
+
+  arraySearch = foodRecipes.filter((Element) =>
     Element.title.toLowerCase().includes(input)
   );
   const ulSearch = $(`<ul id="results" style="
@@ -588,36 +599,46 @@ const funSearch = () => {
     margin: 0;
     list-style: none;
     z-index: 1000;"></ul>`);
-  
-     searchAreaDiv.append(ulSearch);
-     arraySearch.forEach((Elemen,ind) =>{
-       const liSearch=$(`<li class="result-item" style="padding:5px;
-          cursor:pointer;">${Elemen.title}</li>`)
-          ulSearch.append(liSearch);
-          liSearch.on('click',()=>{
-            $('#search').val($(this).text().title);
-            console.log($(this).text())
-          })
-        
-     })
 
-  
+  searchAreaDiv.append(ulSearch);
+  arraySearch.forEach((Elemen, ind) => {
+    const liSearch = $(`<li class="result-item" style="padding:5px;
+          cursor:pointer;">${Elemen.title}</li>`);
+    ulSearch.append(liSearch);
+    liSearch.on("click", () => {
+      choose=""
+      itemsAreaChoose.empty()
+      $("#search").val(arraySearch[ind].title);
+      choose = arraySearch[ind];
+      main.hide();
+      chooseItem.show();
+      const ImageSChosse = $(`<div class="imagDivSlider">
+        <img id="sliderImg" src=${choose.imageSrc} alt="slider image" >
+        </div>`);
+        const descrptionSChosse = $(
+          `<div class="descDivSlider"><p id ="sliderDesc">${choose.recipes}</p></div>`
+        );
+        itemsAreaChoose.append(ImageSChosse);
+        itemsAreaChoose.append(descrptionSChosse);
+        
+    });
+  });
 };
+
 $(".search-icon").on("click", () => {
-  
   SearchDiv.show();
   SearchDiv.css({
-    "position": "fixed",
-    "top": "15%",
-    "left": "50%",
-    "transform": "translateX(-50%)",
-    "width": "80%",
-    "height": "30%",
+    position: "fixed",
+    top: "15%",
+    left: "50%",
+    transform: "translateX(-50%)",
+    width: "80%",
+    height: "30%",
     "z-index": "9999",
-    "background": "white",
-    "padding": "10px",
+    background: "white",
+    padding: "10px",
     "box-shadow": "0 2px 10px rgba(0,0,0,0.2)",
-    "display": "block",
+    display: "block",
   });
   main.css({
     "z-index": "0",
@@ -625,9 +646,8 @@ $(".search-icon").on("click", () => {
   console.log("saeed");
 });
 $("#closeBtn").on("click", () => {
-  arraySearch=[];
+  arraySearch = [];
   SearchDiv.hide();
-  $("#search").val('');
-  $('#results').remove();
-
+  $("#search").val("");
+  $("#results").remove();
 });
