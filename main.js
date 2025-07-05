@@ -164,15 +164,16 @@ const foodRecipes = [
 ];
 
 let foodArrayFav = JSON.parse(localStorage.getItem("foodArryFav")) || [];
-
+let arryUsers=JSON.parse(localStorage.getItem("arrayUsers"))||[];
 localStorage.setItem("foodArry", JSON.stringify(foodRecipes));
 localStorage.setItem("foodArryFav", JSON.stringify(foodArrayFav));
-
+localStorage.setItem("arrayUsers",JSON.stringify(arryUsers));
 const data = window.localStorage.getItem("foodArry");
 const foodArray = JSON.parse(data);
 
 let randomImage;
 let choose;
+
 const categoryDropdown = $(`
   <div class="dropdown">
     <label id="category">Category :</label>
@@ -197,6 +198,7 @@ const main = $(`  <div class="main">
         
        </div>`);
 const logInPage =$(`<div class ="logInPageClass"></div>`)
+const signinPage =$(`<div class ="signinPageClass"></div>`)
 
 const slider = $(`
         <div class="sliderClass">
@@ -261,16 +263,35 @@ const logoLogin = $(`<div class="logoLogin">  <img src="https://fabrx.co/fullpre
 const inputlOgIn= $(`<div class="inputLogin">
   <label>User Name<label>
    <input type="text" id="userNameId" placeholder="Enter your UserName"/>
+   <label id="invalidUser" style="color: red;">inavild input</label>
    <label>Password</label>
     <input type="password" id ="passwordId"   placeholder="Enter your password"/>
-    
+    <label id="invalidpass" style="color: red;">inavild input</label>
+  </div>`);
+  const logoSignin = $(`<div class="logoLogin">  <img src="https://fabrx.co/fullpreview/tastebite/assets/images/brands/brand4.svg"/>
+    </div>`);
+const inputSignin= $(`<div class="inputLogin">
+  <label>User Name<label>
+   <input type="text" id="userNameIdSignin" placeholder="Enter your UserName"/>
+   <label>Password</label>
+    <input type="password" id ="passwordIdSignin"   placeholder="Enter your password"/>
+    <label id="invalid" style="color: red;">inavild input</label>
+     <label>current password</label>
+    <input type="password" id ="passwordIdSignin2"   placeholder="Enter your password"/>
+    <label id="invalid2" style="color: red;">inavild input</label>
   </div>`);
 
 const buttons = $(`<div><button id="btnLogin">log in</button>
    <button id="btnSignin">sign in</button></div>`)
+   const regester =$(`<div><button id="btnRegester">reg</button></div>`)
 logInPage.append(logoLogin);
 logInPage.append(inputlOgIn);
-logInPage.append(buttons)
+logInPage.append(buttons);
+signinPage.append(logoSignin);
+signinPage.append(inputSignin);
+signinPage.append(regester);
+signinPage.hide();
+searchAreaDiv.hide()
 mainDiv.append(navBar);
 navBar.append(imageLogo);
 navBar.append(menuBar);
@@ -278,6 +299,7 @@ menuBar.append(categoryDropdown);
 navBar.append(profilepic);
 mainDiv.append(main);
 mainDiv.append(logInPage)
+mainDiv.append(signinPage);
 main.append(slider);
 main.append(itemsArea);
 slider.append(sliderBox);
@@ -292,8 +314,10 @@ chooseItem.append(itemsAreaChoose);
 chooseItem.hide();
  
 main.append(items);
-
- 
+$("#invalidUser").hide();
+$("#invalidpass").hide();
+$("#invalid").hide();
+$("#invalid2").hide();
 const funSlider = () => {
   const randomIndex = Math.floor(Math.random() * foodRecipes.length);
   const randomElement = foodRecipes[randomIndex];
@@ -677,5 +701,77 @@ $("#closeBtn").on("click", () => {
   $("#results").remove();
 });
 $("#btnSignin").on("click",()=>{
+  signinPage.show();
+  logInPage.hide();
+})
+$("#btnRegester").on('click',()=>{
+  if($("#userNameIdSignin").val()!=""&&($("#passwordIdSignin").val()==$("#passwordIdSignin2").val())){
+      
+     let user ={
+      userName :$("#userNameIdSignin").val(),
+      passwors:$("#passwordIdSignin").val()
+     }
+     arryUsers.push(user);
+     
+     localStorage.setItem("arrayUsers",JSON.stringify(arryUsers));
+     console.log(arryUsers);
+     logInPage.show();
+     signinPage.hide();
+     $("#passwordIdSignin").css({
+      "border":" 2px solid black",
+       
+     })
+     $("#passwordIdSignin2").css({
+      "border":" 2px solid black",
+      
+    })
+    $("#invalid").hide();
+    $("#invalid2").hide();
+  }
+  else if($("#passwordIdSignin").val()!=$("#passwordIdSignin2").val()){
+    $("#passwordIdSignin").css({
+      "border":" 2px solid red",
+      "border-radius": "25px"
+     })
+     
+     $("#passwordIdSignin2").css({
+       "border":" 2px solid red",
+      "border-radius": "25px"
+     })
+     $("#invalid").show();
+    $("#invalid2").show();
+  }
+});
+$("#btnLogin").on('click',()=>{
   
+ arryUsers.forEach((Element,ind)=>{
+  console.log(Element.userName);
+  console.log(Element.passwors)
+  if((Element.userName== $("#userNameId").val())&&(Element.passwors==$("#passwordId").val())){
+    logInPage.hide();
+    main.show();
+    $("#invalidUser").hide();
+    $("#invalidpass").hide();
+    $("#userNameId").css({
+      "border":" 2px solid black",
+       
+     })
+     $("#passwordId").css({
+      "border":" 2px solid black",
+      
+    })
+    return;
+  }
+  
+ })
+ $("#userNameId").css({
+  "border":" 2px solid red",
+  "border-radius": "25px"
+ })
+ $("#passwordId").css({
+   "border":" 2px solid red",
+  "border-radius": "25px"
+ })
+ $("#invalidUser").show();
+$("#invalidpass").show();
 })
