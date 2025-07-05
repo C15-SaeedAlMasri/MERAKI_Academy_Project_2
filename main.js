@@ -196,6 +196,7 @@ const navBar = $(`<div class="navClass">
 const main = $(`  <div class="main">
         
        </div>`);
+const logInPage =$(`<div class ="logInPageClass"></div>`)
 
 const slider = $(`
         <div class="sliderClass">
@@ -213,8 +214,9 @@ const menuBar = $(`
          <p id="home">Home</p>
      
          <p id="favourite">favourite</p>
+         <div>
          <span class="search-icon" >🔍</span>
-         
+         </div>
         </div>`);
 const profilepic = $(`
     <div id="profilePic">
@@ -250,16 +252,32 @@ const searchAreaDiv = $(`<div class ="searchBox">
                  <div id="myDiv">
       <span id="closeBtn">&times;</span></div>
  
-                         
-                 <input id="search" type="text" oninput="funSearch()" name="search" placeholde
+                          <input id="search" type="text" oninput="funSearch()" name="search" placeholde
          r="Search..">
+                
                 </div>`);
+const logoLogin = $(`<div class="logoLogin">  <img src="https://fabrx.co/fullpreview/tastebite/assets/images/brands/brand4.svg"/>
+    </div>`);
+const inputlOgIn= $(`<div class="inputLogin">
+  <label>User Name<label>
+   <input type="text" id="userNameId" placeholder="Enter your UserName"/>
+   <label>Password</label>
+    <input type="password" id ="passwordId"   placeholder="Enter your password"/>
+    
+  </div>`);
+
+const buttons = $(`<div><button id="btnLogin">log in</button>
+   <button id="btnSignin">sign in</button></div>`)
+logInPage.append(logoLogin);
+logInPage.append(inputlOgIn);
+logInPage.append(buttons)
 mainDiv.append(navBar);
 navBar.append(imageLogo);
 navBar.append(menuBar);
 menuBar.append(categoryDropdown);
 navBar.append(profilepic);
 mainDiv.append(main);
+mainDiv.append(logInPage)
 main.append(slider);
 main.append(itemsArea);
 slider.append(sliderBox);
@@ -272,9 +290,10 @@ SearchDiv.append(searchAreaDiv);
 mainDiv.append(chooseItem);
 chooseItem.append(itemsAreaChoose);
 chooseItem.hide();
-
+ 
 main.append(items);
 
+ 
 const funSlider = () => {
   const randomIndex = Math.floor(Math.random() * foodRecipes.length);
   const randomElement = foodRecipes[randomIndex];
@@ -290,7 +309,7 @@ const funSlider = () => {
 funSlider();
 
 navBar.css({
-  display: "flex",
+  display: "none",
   "flex-direction": "row",
   "justify-content": "space-between",
 
@@ -310,7 +329,7 @@ profilepic.css({
 });
 
 main.css({
-  display: "flex",
+  display: "none",
   "flex-direction": "column",
   "justify-content": "space-between",
 });
@@ -520,6 +539,7 @@ $("#favourite").click(function () {
   main.hide();
   catItems.hide();
   FavItems.show();
+  SearchDiv.hide();
   let imageNumber;
   foodArrayFav.forEach((Element, ind) => {
     if (Element.rate == 1) {
@@ -580,8 +600,9 @@ $("#favourite").click(function () {
 let arraySearch = [];
 
 const funSearch = () => {
+  console.log($("#search").val())
   choose=""
-  $("#search").val("");
+
   let input = $("#search").val();
   $("#results").remove();
 
@@ -612,6 +633,8 @@ const funSearch = () => {
       choose = arraySearch[ind];
       main.hide();
       chooseItem.show();
+      FavItems.hide();
+      catItems.hide();
       const ImageSChosse = $(`<div class="imagDivSlider">
         <img id="sliderImg" src=${choose.imageSrc} alt="slider image" >
         </div>`);
@@ -620,7 +643,9 @@ const funSearch = () => {
         );
         itemsAreaChoose.append(ImageSChosse);
         itemsAreaChoose.append(descrptionSChosse);
-        
+        SearchDiv.hide();
+  $("#search").val("");
+  $("#results").remove();
     });
   });
 };
@@ -651,3 +676,6 @@ $("#closeBtn").on("click", () => {
   $("#search").val("");
   $("#results").remove();
 });
+$("#btnSignin").on("click",()=>{
+  
+})
