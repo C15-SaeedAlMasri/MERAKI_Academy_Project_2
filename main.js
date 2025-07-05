@@ -346,7 +346,20 @@ menuBar.css({
   " justify-content": "space-between",
   gap: "20px",
 });
-
+logInPage.css({
+  display: "flex",
+  "flex-direction": "column",
+  "align-items": "center",
+  " justify-content": "space-between",
+  gap: "20px",
+});
+signinPage.css({
+  display: "none",
+  "flex-direction": "column",
+  "align-items": "center",
+  " justify-content": "space-between",
+  gap: "20px",
+});
 profilepic.css({
   width: "20px",
   height: "20px",
@@ -393,6 +406,7 @@ $("#closeBtn").css({
 
 const funShowItem = () => {
   let imageNumber;
+   
   foodRecipes.forEach((Element, ind) => {
     let isFav = foodArrayFav.some((fav) => fav.id === Element.id);
     let heartText = isFav ? "♥" : "♡";
@@ -676,6 +690,7 @@ const funSearch = () => {
 
 $(".search-icon").on("click", () => {
   SearchDiv.show();
+  searchAreaDiv.show()
   SearchDiv.css({
     position: "fixed",
     top: "15%",
@@ -750,6 +765,8 @@ $("#btnLogin").on('click',()=>{
   if((Element.userName== $("#userNameId").val())&&(Element.passwors==$("#passwordId").val())){
     logInPage.hide();
     main.show();
+    
+    navBar.css("display", "flex");
     $("#invalidUser").hide();
     $("#invalidpass").hide();
     $("#userNameId").css({
