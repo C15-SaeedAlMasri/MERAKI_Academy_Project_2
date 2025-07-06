@@ -261,7 +261,7 @@ const searchAreaDiv = $(`<div class ="searchBox">
 const logoLogin = $(`<div class="logoLogin">  <img src="https://fabrx.co/fullpreview/tastebite/assets/images/brands/brand4.svg"/>
     </div>`);
 const inputlOgIn= $(`<div class="inputLogin">
-  <label>User Name<label>
+  <label>User Name</label>
    <input type="text" id="userNameId" placeholder="Enter your UserName"/>
    <label id="invalidUser" style="color: red;">inavild input</label>
    <label>Password</label>
@@ -271,7 +271,7 @@ const inputlOgIn= $(`<div class="inputLogin">
   const logoSignin = $(`<div class="logoLogin">  <img src="https://fabrx.co/fullpreview/tastebite/assets/images/brands/brand4.svg"/>
     </div>`);
 const inputSignin= $(`<div class="inputLogin">
-  <label>User Name<label>
+  <label>User Name</label>
    <input type="text" id="userNameIdSignin" placeholder="Enter your UserName"/>
    <label>Password</label>
     <input type="password" id ="passwordIdSignin"   placeholder="Enter your password"/>
@@ -286,6 +286,7 @@ const buttons = $(`<div><button id="btnLogin">log in</button>
    const regester =$(`<div><button id="btnRegester">reg</button></div>`)
 logInPage.append(logoLogin);
 logInPage.append(inputlOgIn);
+
 logInPage.append(buttons);
 signinPage.append(logoSignin);
 signinPage.append(inputSignin);
@@ -333,53 +334,64 @@ const funSlider = () => {
 funSlider();
 
 navBar.css({
-  display: "none",
+  "display": "none",
   "flex-direction": "row",
   "justify-content": "space-between",
 
   "margin-top": "40px",
 });
 menuBar.css({
-  display: "flex",
+  "display": "flex",
   "flex-direction": "row",
   "align-items": "center",
   " justify-content": "space-between",
   gap: "20px",
 });
 logInPage.css({
-  display: "flex",
+  "display": "flex",
   "flex-direction": "column",
   "align-items": "center",
   " justify-content": "space-between",
-  gap: "20px",
+  "gap": "20px",
+  "margin-top":"10%"
 });
+inputlOgIn.css({
+  "display": "flex",
+  "flex-direction": "column",
+})
+
+buttons.css({
+  "display": "flex",
+  "flex-direction": "column",
+})
 signinPage.css({
-  display: "none",
+  "display": "none",
   "flex-direction": "column",
   "align-items": "center",
   " justify-content": "space-between",
-  gap: "20px",
+  "gap": "20px",
 });
 profilepic.css({
-  width: "20px",
-  height: "20px",
+  "width": "20px",
+  "height": "20px",
 });
 
 main.css({
-  display: "none",
+  "display": "none",
   "flex-direction": "column",
   "justify-content": "space-between",
 });
 itemsArea.css({
-  display: "grid",
+  "display": "grid",
   "grid-template-columns": " 1fr 1fr 1fr 1fr",
   "grid-template-rows": "1fr 1fr 1fr 1fr",
   "object-fit": "cover",
-  overflow: "hidden",
+  "overflow": "hidden",
   "justify-content": "space-between",
+  
 });
 itemsAreaCat.css({
-  display: "grid",
+  "display": "grid",
   "grid-template-columns": " 1fr 1fr 1fr 1fr",
   "grid-template-rows": "1fr 1fr 1fr 1fr",
   "object-fit": "cover",
@@ -387,7 +399,7 @@ itemsAreaCat.css({
   "justify-content": "space-between",
 });
 itemsAreaFav.css({
-  display: "grid",
+  "display": "grid",
   "grid-template-columns": " 1fr 1fr 1fr 1fr",
   "grid-template-rows": "1fr 1fr 1fr 1fr",
   "object-fit": "cover",
@@ -395,13 +407,13 @@ itemsAreaFav.css({
   "justify-content": "space-between",
 });
 $("#closeBtn").css({
-  position: "absolute",
-  top: "5px",
-  right: "10px",
+  "position": "absolute",
+  "top": "5px",
+  "right": "10px",
   "font-size": "20px",
   "font-weight": "bold",
-  cursor: "pointer",
-  color: "#888",
+  'cursor': "pointer",
+  "color": "#888",
 });
 
 const funShowItem = () => {
@@ -434,7 +446,7 @@ const funShowItem = () => {
     const contantRate = $(
       `<img id= "imgRateCountant" src ="${imageNumber}" />`
     );
-    const contantName = $(`<h2 id= " nameCountant">${Element.title}</h2>`);
+    const contantName = $(`<h4 id= " nameCountant">${Element.title}</h4>`);
     const contantDivFav = $(`<div class="fav"></div>`);
     const addTofav = $(`<button  class="fav-btn" id="${ind}">
      Add to  <span   class="heart" id="${ind}">${heartText}</span>
@@ -503,7 +515,7 @@ $(".dropdown-list").on("change", function (e) {
     const contantRate = $(
       `<img id= "imgRateCountant" src ="${imageNumber}" />`
     );
-    const contantName = $(`<h2 id= " nameCountant">${Element.title}</h2>`);
+    const contantName = $(`<h4 id= " nameCountant">${Element.title}</h4>`);
     const contantDivFav = $(`<div class="fav"></div>`);
     const addTofavCat = $(`<button  class="fav-btn" id="${ind}">
   Add to  <span   class="heart" id="${ind}">${heartText}</span>
@@ -532,6 +544,8 @@ $(".dropdown-list").on("change", function (e) {
   });
   main.hide();
   catItems.show();
+  FavItems.hide();
+  chooseItem.hide();
   $(".fav-btn").on("click", function (e) {
     let heart = $(this).find(".heart");
     if (foodArrayFav.includes(foodRecipes[e.target.id])) {
@@ -552,11 +566,13 @@ $("#home").click(function () {
   main.show();
   catItems.hide();
   FavItems.hide();
+  chooseItem.hide();
   $(".dropdown-list").val($(".dropdown-list option:first").val());
 });
 
 let arrayFav = [];
 $(".fav-btn").on("click", function (e) {
+  chooseItem.hide();
   let heart = $(this).find(".heart");
   if (foodArrayFav.includes(foodRecipes[e.target.id])) {
     heart.text("♡");
@@ -602,7 +618,7 @@ $("#favourite").click(function () {
     const contantRate = $(
       `<img id= "imgRateCountant" src ="${imageNumber}" />`
     );
-    const contantName = $(`<h2 id= " nameCountant">${Element.title}</h2>`);
+    const contantName = $(`<h4 id= " nameCountant">${Element.title}</h4>`);
     const contantDivFav = $(`<div class="fav"></div>`);
     const addTofav = $(`<button  class="fav-btn-remove" id="${ind}">
     Remove from  <span class="heart id="${ind}">♡</span>
@@ -716,8 +732,18 @@ $("#closeBtn").on("click", () => {
   $("#results").remove();
 });
 $("#btnSignin").on("click",()=>{
-  signinPage.show();
+  signinPage.css({
+    "display":"flex",
+   "flex-direction": "column",
+    " justify-content": "space-between",
+    "gap": "20px",
+    "margin-top":"10%"
+  })
   logInPage.hide();
+  inputSignin.css({
+    "display":"flex",
+    "flex-direction": "column",
+  })
 })
 $("#btnRegester").on('click',()=>{
   if($("#userNameIdSignin").val()!=""&&($("#passwordIdSignin").val()==$("#passwordIdSignin2").val())){
@@ -792,3 +818,16 @@ $("#btnLogin").on('click',()=>{
  $("#invalidUser").show();
 $("#invalidpass").show();
 })
+
+
+//api
+// $.ajax({
+//   url:"https://api.themoviedb.org/3/discover/movie?api_key=dd3b043bc74baf3e8975bb88edc37fa3&include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc",
+//   success:(data)=>{
+// console.log(data.results)
+//   },
+//   error:(err)=>{
+
+//   }
+// })
+
