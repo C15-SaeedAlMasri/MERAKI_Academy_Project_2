@@ -177,8 +177,19 @@ body {
   background-color: #ff5722;
   color: #fff;
 }
-
+input {
+  width: 100%;
+  padding: 14px 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  outline: none;
+  transition: border 0.3s;
+}
  
+input:focus {
+  border-color: #ff5722;
+}
 
 
 @media (max-width: 768px) {

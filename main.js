@@ -187,7 +187,7 @@ const categoryDropdown = $(`
     </select>
   </div>
 `);
-
+const logOut =$(`<div><button id="logOutBtn">LogOut</button></div>`);
 const mainDiv = $(".container");
 const navBar = $(`<div class="navClass">
    
@@ -261,7 +261,7 @@ const searchAreaDiv = $(`<div class ="searchBox">
 const logoLogin = $(`<div class="logoLogin">  <img src="https://fabrx.co/fullpreview/tastebite/assets/images/brands/brand4.svg"/>
     </div>`);
 const inputlOgIn= $(`<div class="inputLogin">
-  <label>User Name</label>
+  <label id =""labelData">User Name</label>
    <input type="text" id="userNameId" placeholder="Enter your UserName"/>
    <label id="invalidUser" style="color: red;">inavild input</label>
    <label>Password</label>
@@ -298,6 +298,7 @@ navBar.append(imageLogo);
 navBar.append(menuBar);
 menuBar.append(categoryDropdown);
 navBar.append(profilepic);
+navBar.append(logOut)
 mainDiv.append(main);
 mainDiv.append(logInPage)
 mainDiv.append(signinPage);
@@ -352,24 +353,28 @@ logInPage.css({
   "flex-direction": "column",
   "align-items": "center",
   " justify-content": "space-between",
-  "gap": "20px",
+  "gap": "50px",
   "margin-top":"10%"
 });
 inputlOgIn.css({
   "display": "flex",
   "flex-direction": "column",
+  "gap": "10px",
 })
 
 buttons.css({
   "display": "flex",
   "flex-direction": "column",
+   
 })
 signinPage.css({
   "display": "none",
   "flex-direction": "column",
   "align-items": "center",
   " justify-content": "space-between",
-  "gap": "20px",
+  "gap": "50px",
+  "margin-top":"10%"
+ 
 });
 profilepic.css({
   "width": "20px",
@@ -415,11 +420,46 @@ $("#closeBtn").css({
   'cursor': "pointer",
   "color": "#888",
 });
+$("#btnLogin").css({
+ 
+  "background-color": "#ff5722",
+  "border": "1px solid #ffffff",
+  "border-radius": "20px",
+  "padding": '8px 12px',
+  'margin': '10px',
+  'font-size': '14px',
+  "width":"170px",
+  "color":"white"
 
-const funShowItem = () => {
+})
+
+$("#btnSignin").css({
+  
+  "background-color": "#ffffff",
+  "border": "1px solid #ff5722",
+  "border-radius": "20px",
+  "padding": '8px 12px',
+  'margin': '10px',
+  'font-size': '14px',
+  "width":"170px"
+});
+$("#btnRegester").css({
+  "background-color": "#ff5722",
+  "border": "1px solid #ffffff",
+  "border-radius": "20px",
+  "padding": '8px 12px',
+  'margin': '10px',
+  'font-size': '14px',
+  "width":"170px",
+  "color":"white"
+})
+ 
+const funShowItem = (foodRecipes) => {
   let imageNumber;
-   
+   itemsArea.empty();
+  console.log(foodRecipes)
   foodRecipes.forEach((Element, ind) => {
+    console.log(Element);
     let isFav = foodArrayFav.some((fav) => fav.id === Element.id);
     let heartText = isFav ? "♥" : "♡";
     let heartColor = isFav ? "red" : "black";
@@ -451,6 +491,20 @@ const funShowItem = () => {
     const addTofav = $(`<button  class="fav-btn" id="${ind}">
      Add to  <span   class="heart" id="${ind}">${heartText}</span>
   </button>`);
+  addTofav.on('click',()=>{
+    if(foodArrayFav.some((fav) => fav.id === Element.id)){
+      foodArrayFav.splice(foodArrayFav.indexOf(Element.id), 1);
+      localStorage.setItem("foodArryFav", JSON.stringify(foodArrayFav));
+      funShowItem(foodRecipes)
+    }
+    else{
+       console.log("fav click")
+    foodArrayFav.push(Element);
+    localStorage.setItem("foodArryFav", JSON.stringify(foodArrayFav));
+    funShowItem(foodRecipes)
+    }
+   
+  })
     addTofav.find(".heart").css("color", heartColor);
     const iconFav = $(
       `<link rel="icon" type="image/x-icon" href="/images/favicon.ico">`
@@ -474,20 +528,15 @@ const funShowItem = () => {
     contantDivFav.append(iconFav);
   });
 };
-funShowItem();
+
 
 // const catFun =()=>{
 
 // }
 let arryCat = [];
-$(".dropdown-list").on("change", function (e) {
+
+const funCat=(arryCat)=>{
   itemsAreaCat.empty();
-  const catSelect = $(this).val();
-  if (catSelect == "all") {
-    arryCat = foodRecipes;
-  } else {
-    arryCat = foodRecipes.filter((vaule) => vaule.cat == catSelect);
-  }
   console.log(arryCat);
   arryCat.forEach((Element, ind) => {
     let isFav = foodArrayFav.some((fav) => fav.id === Element.id);
@@ -518,9 +567,27 @@ $(".dropdown-list").on("change", function (e) {
     const contantName = $(`<h4 id= " nameCountant">${Element.title}</h4>`);
     const contantDivFav = $(`<div class="fav"></div>`);
     const addTofavCat = $(`<button  class="fav-btn" id="${ind}">
+      
   Add to  <span   class="heart" id="${ind}">${heartText}</span>
 </button>`);
+addTofavCat.on('click',()=>{
+  console.log("fav click")
+  if(foodArrayFav.some((fav) => fav.id === Element.id)){
+    foodArrayFav.splice(foodArrayFav.indexOf( Element.id), 1);
+    localStorage.setItem("foodArryFav", JSON.stringify(foodArrayFav));
+    funShowItem(foodRecipes);
+  funCat(arryCat);
+  }
+  else{
+    foodArrayFav.push(Element);
+  localStorage.setItem("foodArryFav", JSON.stringify(foodArrayFav));
+  funShowItem(foodRecipes);
+  funCat(arryCat);
+  }
+  
+})
     addTofavCat.find(".heart").css("color", heartColor);
+
     const iconFav = $(
       `<link rel="icon" type="image/x-icon" href="/images/favicon.ico">`
     );
@@ -546,23 +613,21 @@ $(".dropdown-list").on("change", function (e) {
   catItems.show();
   FavItems.hide();
   chooseItem.hide();
-  $(".fav-btn").on("click", function (e) {
-    let heart = $(this).find(".heart");
-    if (foodArrayFav.includes(foodRecipes[e.target.id])) {
-      heart.text("♡");
-      foodArrayFav.splice(foodArrayFav.indexOf(foodRecipes[e.target.id]), 1);
-      localStorage.setItem("foodArryFav", JSON.stringify(foodArrayFav));
-    } else {
-      heart.text("♥");
-      heart.css({
-        color: "red",
-      });
-      foodArrayFav.push(foodRecipes[e.target.id]);
-      localStorage.setItem("foodArryFav", JSON.stringify(foodArrayFav));
-    }
-  });
+}
+$(".dropdown-list").on("change",function(e){
+
+  
+  const catSelect = $(this).val();
+  if (catSelect == "all") {
+    arryCat = foodRecipes;
+  } else {
+    arryCat = foodRecipes.filter((vaule) => vaule.cat == catSelect);
+  }
+  funCat(arryCat);
 });
 $("#home").click(function () {
+ 
+  funShowItem(foodRecipes);
   main.show();
   catItems.hide();
   FavItems.hide();
@@ -571,22 +636,22 @@ $("#home").click(function () {
 });
 
 let arrayFav = [];
-$(".fav-btn").on("click", function (e) {
-  chooseItem.hide();
-  let heart = $(this).find(".heart");
-  if (foodArrayFav.includes(foodRecipes[e.target.id])) {
-    heart.text("♡");
-    foodArrayFav.splice(foodArrayFav.indexOf(foodRecipes[e.target.id]), 1);
-    localStorage.setItem("foodArryFav", JSON.stringify(foodArrayFav));
-  } else {
-    heart.text("♥");
-    heart.css({
-      color: "red",
-    });
-    foodArrayFav.push(foodRecipes[e.target.id]);
-    localStorage.setItem("foodArryFav", JSON.stringify(foodArrayFav));
-  }
-});
+// $(".fav-btn").on("click", function (e) {
+//   chooseItem.hide();
+//   let heart = $(this).find(".heart");
+//   if (foodArrayFav.includes(foodRecipes[e.target.id])) {
+//     heart.text("♡");
+//     foodArrayFav.splice(foodArrayFav.indexOf(foodRecipes[e.target.id]), 1);
+//     localStorage.setItem("foodArryFav", JSON.stringify(foodArrayFav));
+//   } else {
+//     heart.text("♥");
+//     heart.css({
+//       color: "red",
+//     });
+//     foodArrayFav.push(foodRecipes[e.target.id]);
+//     localStorage.setItem("foodArryFav", JSON.stringify(foodArrayFav));
+//   }
+// });
 
 $("#favourite").click(function () {
   itemsAreaFav.empty();
@@ -743,10 +808,11 @@ $("#btnSignin").on("click",()=>{
   inputSignin.css({
     "display":"flex",
     "flex-direction": "column",
+     "gap": "10px",
   })
 })
 $("#btnRegester").on('click',()=>{
-  if($("#userNameIdSignin").val()!=""&&($("#passwordIdSignin").val()==$("#passwordIdSignin2").val())){
+  if($("#userNameIdSignin").val()!=""&&($("#passwordIdSignin").val()==$("#passwordIdSignin2").val())&&($("#passwordIdSignin").val()!="")){
       
      let user ={
       userName :$("#userNameIdSignin").val(),
@@ -769,15 +835,15 @@ $("#btnRegester").on('click',()=>{
     $("#invalid").hide();
     $("#invalid2").hide();
   }
-  else if($("#passwordIdSignin").val()!=$("#passwordIdSignin2").val()){
+  else if(($("#passwordIdSignin").val()!=$("#passwordIdSignin2").val())||($("#passwordIdSignin").val()=="")){
     $("#passwordIdSignin").css({
       "border":" 2px solid red",
-      "border-radius": "25px"
+      
      })
      
      $("#passwordIdSignin2").css({
        "border":" 2px solid red",
-      "border-radius": "25px"
+      
      })
      $("#invalid").show();
     $("#invalid2").show();
@@ -791,7 +857,7 @@ $("#btnLogin").on('click',()=>{
   if((Element.userName== $("#userNameId").val())&&(Element.passwors==$("#passwordId").val())){
     logInPage.hide();
     main.show();
-    
+    funShowItem(foodRecipes);
     navBar.css("display", "flex");
     $("#invalidUser").hide();
     $("#invalidpass").hide();
@@ -809,11 +875,11 @@ $("#btnLogin").on('click',()=>{
  })
  $("#userNameId").css({
   "border":" 2px solid red",
-  "border-radius": "25px"
+  
  })
  $("#passwordId").css({
    "border":" 2px solid red",
-  "border-radius": "25px"
+  
  })
  $("#invalidUser").show();
 $("#invalidpass").show();
@@ -831,3 +897,10 @@ $("#invalidpass").show();
 //   }
 // })
 
+$("#logOutBtn").on('click',()=>{
+$("#passwordId").val("");
+$("#userNameId").val("");
+  logInPage.show();
+    main.hide();
+    navBar.hide();
+})
