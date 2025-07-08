@@ -264,10 +264,10 @@ const logoLogin = $(`<div class="logoLogin">  <img src="https://fabrx.co/fullpre
 const inputlOgIn= $(`<div class="inputLogin">
   <label id =""labelData">User Name</label>
    <input type="text" id="userNameId" placeholder="Enter your UserName"/>
-   <label id="invalidUser" style="color: red;">inavild input</label>
+   <label id="invalidUser" style="color: red;">invalid input</label>
    <label>Password</label>
     <input type="password" id ="passwordId"   placeholder="Enter your password"/>
-    <label id="invalidpass" style="color: red;">inavild input</label>
+    <label id="invalidpass" style="color: red;">invalid input</label>
   </div>`);
   const logoSignin = $(`<div class="logoLogin">  <img src="https://fabrx.co/fullpreview/tastebite/assets/images/brands/brand4.svg"/>
     </div>`);
@@ -276,10 +276,10 @@ const inputSignin= $(`<div class="inputLogin">
    <input type="text" id="userNameIdSignin" placeholder="Enter your UserName"/>
    <label>Password</label>
     <input type="password" id ="passwordIdSignin"   placeholder="Enter your password"/>
-    <label id="invalid" style="color: red;">inavild input</label>
+    <label id="invalid" style="color: red;">invalid input</label>
      <label>current password</label>
     <input type="password" id ="passwordIdSignin2"   placeholder="Enter your password"/>
-    <label id="invalid2" style="color: red;">inavild input</label>
+    <label id="invalid2" style="color: red;">invalid input</label>
   </div>`);
 
 const buttons = $(`<div><button id="btnLogin">log in</button>
