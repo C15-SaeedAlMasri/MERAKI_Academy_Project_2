@@ -283,8 +283,8 @@ const inputSignin= $(`<div class="inputLogin">
   </div>`);
 
 const buttons = $(`<div><button id="btnLogin">log in</button>
-   <button id="btnSignin">sign in</button></div>`)
-   const regester =$(`<div><button id="btnRegester">reg</button></div>`)
+   <button id="btnSignin">sign up</button></div>`)
+   const regester =$(`<div><button id="btnRegester">sign up</button></div>`)
 logInPage.append(logoLogin);
 logInPage.append(inputlOgIn);
 
