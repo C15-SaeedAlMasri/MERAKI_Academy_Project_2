@@ -724,7 +724,7 @@ $("#favourite").click(function () {
     const contantName = $(`<h4 id= " nameCountant">${Element.title}</h4>`);
     const contantDivFav = $(`<div class="fav"></div>`);
     const addTofav = $(`<button  class="fav-btn-remove" id="${ind}">
-    Remove from  
+    Remove   
   </button>`);
     const iconFav = $(
       `<link rel="icon" type="image/x-icon" href="/images/favicon.ico">`
