@@ -4,7 +4,7 @@ const foodRecipes = [
     title: "Greek Salad Classic",
     imageSrc:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQy0CV0V0xJhOXjDGgYYSb1Q0Wg2U3tBiKWiA&s",
-    recipes: "Tomato, cucumber, onion, feta, olives with olive oil & oregano.",
+    recipes: "A refreshing mix of ripe tomatoes, crisp cucumbers, thinly sliced onions, creamy feta cheese, and briny Kalamata olives, all tossed together with high-quality extra virgin olive oil and sprinkled with fragrant oregano for the authentic Greek flavor.",
     rate: 5,
     cat: "salad",
   },
@@ -13,7 +13,7 @@ const foodRecipes = [
     title: "Greek Salad with Bell Pepper",
     imageSrc:
       "https://cleananddelicious.com/wp-content/uploads/2022/05/Greek-Salad-5.jpg",
-    recipes: "Classic Greek salad plus green bell pepper.",
+    recipes: "Classic Greek salad enhanced with the crunch and sweetness of fresh green bell peppers, combined with juicy tomatoes, crisp cucumbers, tangy feta cheese, olives, and drizzled generously with olive oil and a hint of oregano for extra zest.",
     rate: 4,
     cat: "salad",
   },
@@ -22,7 +22,7 @@ const foodRecipes = [
     title: "Greek Salad Variation",
     imageSrc:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqZACUdO3i5QcrljVZYZzRbs5ZHOUBxjjliQ&s",
-    recipes: "Greek salad with extra herbs.",
+    recipes: "A unique twist on the traditional Greek salad, featuring fresh tomatoes, crunchy cucumbers, onions, olives, and feta, with added aromatic herbs like dill and parsley to elevate the flavors and give it a vibrant, fresh taste.",
     rate: 3,
     cat: "salad",
   },
@@ -31,7 +31,7 @@ const foodRecipes = [
     title: "Grilled Salmon Fillet",
     imageSrc:
       "https://www.wellplated.com/wp-content/uploads/2023/03/Easy-Grilled-Salmon.jpg",
-    recipes: "Salmon fillet grilled with herbs, served with salad.",
+    recipes: "Tender salmon fillet perfectly grilled with a blend of fresh herbs such as thyme and rosemary, lightly seasoned with salt and pepper, served alongside a fresh garden salad with lemon wedges for a light, healthy meal.",
     rate: 5,
     cat: "fish",
   },
@@ -40,7 +40,7 @@ const foodRecipes = [
     title: "Salmon with Lemon Herb",
     imageSrc:
       "https://sallysbakingaddiction.com/wp-content/uploads/2015/09/baked-lemon-salmon.jpg",
-    recipes: "Grilled salmon topped with lemon slices & herbs.",
+    recipes: "Oven-baked salmon filet topped with thin slices of fresh lemon and fragrant herbs like dill and parsley, drizzled with olive oil, delivering a zesty and aromatic flavor with every bite.",
     rate: 5,
     cat: "fish",
   },
@@ -49,7 +49,7 @@ const foodRecipes = [
     title: "Salmon and Veggies",
     imageSrc:
       "https://images.squarespace-cdn.com/content/v1/58bf61ea3a041163d873b4e8/1587422396891-RMWS0B51RBVJ53YO2HCM/combisteam-queen-bakedsalmonwithvegetables.jpeg",
-    recipes: "Grilled salmon served on zucchini and asparagus.",
+    recipes: "Succulent grilled salmon served on a bed of steamed zucchini and asparagus spears, lightly seasoned with garlic and herbs, creating a nutritious and flavorful dish perfect for any occasion.",
     rate: 4,
     cat: "fish",
   },
@@ -58,7 +58,7 @@ const foodRecipes = [
     title: "Chocolate Cake Classic",
     imageSrc:
       "https://www.theflavorbender.com/wp-content/uploads/2018/09/Classic-Chocolate-CakeFeatured2-500x500.jpg",
-    recipes: "Rich moist chocolate cake with frosting.",
+    recipes: "Decadent, moist chocolate cake layered with smooth, creamy chocolate frosting, made from rich cocoa powder and topped with chocolate shavings for an irresistible dessert experience.",
     rate: 5,
     cat: "dessert",
   },
@@ -67,7 +67,7 @@ const foodRecipes = [
     title: "Mini Chocolate Tart",
     imageSrc:
       "https://apronandwhisk.com/wp-content/uploads/2020/11/Chocolate-Peanut-Fudge-Tarts-10.jpg",
-    recipes: "Chocolate tart with ganache and berries.",
+    recipes: "Delicate mini tarts filled with silky chocolate ganache, topped with fresh berries and a sprinkle of crushed nuts, combining a perfect balance of sweetness and texture.",
     rate: 4,
     cat: "dessert",
   },
@@ -76,7 +76,7 @@ const foodRecipes = [
     title: "Chocolate Brownie",
     imageSrc:
       "https://40204166.fs1.hubspotusercontent-na1.net/hubfs/40204166/Best%20Chocolate%20Brownie%20Recipe%20NZ%20Chelsea%20Sugar.jpg",
-    recipes: "Fudgy chocolate brownie squares.",
+    recipes: "Rich and fudgy chocolate brownies with a gooey center and slightly crispy edges, made with high-quality dark chocolate and a hint of vanilla for deep flavor.",
     rate: 3,
     cat: "dessert",
   },
@@ -85,7 +85,7 @@ const foodRecipes = [
     title: "Avocado Toast",
     imageSrc:
       "https://www.allrecipes.com/thmb/H1mSgOExKFdto3PWLfC9aTgJmlI=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/11699506-avocado-toast-4x3-ea45b882fb0c454a9ca31647d4fd3c01.jpg",
-    recipes: "Toasted bread with mashed avocado & seasoning.",
+    recipes: "Toasted artisan bread topped with creamy mashed avocado, seasoned with salt, pepper, and a squeeze of fresh lemon juice, garnished with chili flakes and microgreens for a nutritious and flavorful breakfast.",
     rate: 4,
     cat: "breakfast",
   },
@@ -94,7 +94,7 @@ const foodRecipes = [
     title: "Fruit Smoothie Bowl",
     imageSrc:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOmVj-W8WCAWTM_zMAiGClw-uRejIrCgjLCA&s",
-    recipes: "Smoothie bowl with fresh fruits & granola.",
+    recipes: "A vibrant smoothie bowl blended from fresh seasonal fruits, topped with crunchy granola, chia seeds, sliced bananas, and a drizzle of honey for a refreshing and energizing start to your day.",
     rate: 5,
     cat: "breakfast",
   },
@@ -103,7 +103,7 @@ const foodRecipes = [
     title: "Berry Pancakes",
     imageSrc:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRf-6pKPUp-Vpw_RYBd0uFtpfLSn9kA-RVAg&s",
-    recipes: "Fluffy pancakes topped with mixed berries.",
+    recipes: "Fluffy, golden pancakes stacked high, generously topped with mixed fresh berries and a dusting of powdered sugar, served with maple syrup on the side for a sweet breakfast treat.",
     rate: 4,
     cat: "breakfast",
   },
@@ -112,7 +112,7 @@ const foodRecipes = [
     title: "Caesar Salad",
     imageSrc:
       "https://www.allrecipes.com/thmb/mXZ0Tulwn3x9_YB_ZbkiTveDYFE=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/229063-Classic-Restaurant-Caesar-Salad-ddmfs-4x3-231-89bafa5e54dd4a8c933cf2a5f9f12a6f.jpg",
-    recipes: "Romaine, croutons, Parmesan & Caesar dressing.",
+    recipes: "Crisp Romaine lettuce tossed with crunchy homemade croutons, freshly grated Parmesan cheese, and a creamy Caesar dressing made with anchovies, garlic, lemon juice, and Dijon mustard for an authentic flavor.",
     rate: 3,
     cat: "salad",
   },
@@ -121,7 +121,7 @@ const foodRecipes = [
     title: "Fruit Salad Mix",
     imageSrc:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQk1ozUx3VL_WqIDtIJ4_xUfS1mMfksVr2LoA&s",
-    recipes: "Mixed tropical fruits with mint and lime.",
+    recipes: "A colorful medley of fresh tropical fruits such as pineapple, mango, papaya, and kiwi, mixed with a hint of fresh mint and a squeeze of lime juice for a sweet and tangy refreshment.",
     rate: 4,
     cat: "salad",
   },
@@ -130,7 +130,7 @@ const foodRecipes = [
     title: "Greek Salad with Olive Oil",
     imageSrc:
       "https://gimmedelicious.com/wp-content/uploads/2021/02/Images-11-9.jpg",
-    recipes: "Horiatiki style with extra olive oil.",
+    recipes: "Traditional Horiatiki Greek salad with juicy tomatoes, cucumbers, red onions, olives, and large chunks of feta cheese, all generously drizzled with high-quality extra virgin olive oil for a fresh and rich taste.",
     rate: 5,
     cat: "salad",
   },
@@ -139,7 +139,7 @@ const foodRecipes = [
     title: "Grilled Steak",
     imageSrc:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmOxRSq350Cw1sX-_lj8GjUZt48PISrmrtrA&s",
-    recipes: "Juicy grilled steak served with garlic butter and herbs.",
+    recipes: "Juicy grilled steak cooked to perfection, seasoned with garlic butter and fresh herbs, served with a side of sautéed vegetables for a hearty and satisfying meal.",
     rate: 5,
     cat: "meat",
   },
@@ -148,7 +148,7 @@ const foodRecipes = [
     title: "BBQ Ribs",
     imageSrc:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoytcTyO058UFQMAqLBj0ifYBu3KxBfnTDyA&s",
-    recipes: "Tender BBQ pork ribs glazed in smoky sauce.",
+    recipes: "Tender and flavorful BBQ pork ribs glazed in a smoky, tangy sauce made from a blend of spices, slow-cooked to achieve fall-off-the-bone tenderness.",
     rate: 4,
     cat: "meat",
   },
@@ -157,11 +157,12 @@ const foodRecipes = [
     title: "Beef Stir Fry",
     imageSrc:
       "https://www.allrecipes.com/thmb/7N-Xq1XMMJw8G0KJv2e0ETUYB2I=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/228823-quick-beef-stir-fry-DDMFS-4x3-1f79b031d3134f02ac27d79e967dfef5.jpg",
-    recipes: "Slices of beef sautéed with vegetables in soy-ginger sauce.",
+    recipes: "Tender slices of beef quickly stir-fried with fresh vegetables such as bell peppers, broccoli, and snap peas in a savory soy-ginger sauce, delivering a perfect balance of sweet, salty, and umami flavors.",
     rate: 5,
     cat: "meat",
   },
 ];
+
 
 let foodArrayFav = JSON.parse(localStorage.getItem("foodArryFav")) || [];
 let arryUsers=JSON.parse(localStorage.getItem("arrayUsers"))||[];
@@ -321,6 +322,7 @@ $("#invalidpass").hide();
 $("#invalid").hide();
 $("#invalid2").hide();
 const funSlider = () => {
+  sliderBox.empty();
   const randomIndex = Math.floor(Math.random() * foodRecipes.length);
   const randomElement = foodRecipes[randomIndex];
   const ImageSlider = $(`<div class="imagDivSlider">
@@ -332,14 +334,19 @@ const funSlider = () => {
   sliderBox.append(ImageSlider);
   sliderBox.append(descrptionSlider);
 };
-funSlider();
 
+
+setInterval(funSlider, 5000);
 navBar.css({
   "display": "none",
-  "flex-direction": "row",
+  "align-items": "center",
   "justify-content": "space-between",
+  "padding": "10px 20px",
+  "background-color":" #fffaf6",
+  "border-bottom":"1px solid #ddd",
+  "gap": "15px",
+  "flex-wrap": "wrap",
 
-  "margin-top": "40px",
 });
 menuBar.css({
   "display": "flex",
@@ -453,7 +460,35 @@ $("#btnRegester").css({
   "width":"170px",
   "color":"white"
 })
- 
+$("#logOutBtn").css({
+  'background-color': '#fffaf6',
+  'color': '#ff5722',
+  'border': 'none',
+  'padding': '10px 20px',
+  'font-size': '16px',
+  'cursor': 'pointer',
+  'border-radius': '5px',
+  'transition': '0.3s ease',
+  'display': 'flex',
+  'align-items': 'center',
+  'gap': '8px'
+})
+$('#logOutBtn').hover(
+  function () {
+    $(this).css({
+      'background-color': '#ff5722',
+      'color': '#fffaf6',
+      'border': '1px solid #fffaf6'
+    });
+  },
+  function () {
+    $(this).css({
+      'background-color': '#fffaf6',
+      'color': '#ff5722',
+      'border': 'none'
+    });
+  }
+);
 const funShowItem = (foodRecipes) => {
   let imageNumber;
    itemsArea.empty();
@@ -526,6 +561,9 @@ const funShowItem = (foodRecipes) => {
     item.append(contantDivFav);
     contantDivFav.append(addTofav);
     contantDivFav.append(iconFav);
+    item.on('click',()=>{
+    
+    })
   });
 };
 
@@ -734,10 +772,11 @@ const funSearch = () => {
     overflow-y: auto;
     position: absolute;
     background: #fff;
-    width: 200px;
+    width: 90%;
     padding: 0;
     margin: 0;
     list-style: none;
+     color: #ff5722;
     z-index: 1000;"></ul>`);
 
   searchAreaDiv.append(ulSearch);
@@ -850,13 +889,14 @@ $("#btnRegester").on('click',()=>{
   }
 });
 $("#btnLogin").on('click',()=>{
-  
+  let isVaild =false;
  arryUsers.forEach((Element,ind)=>{
   console.log(Element.userName);
   console.log(Element.passwors)
   if((Element.userName== $("#userNameId").val())&&(Element.passwors==$("#passwordId").val())){
     logInPage.hide();
     main.show();
+    isVaild=true;
     funShowItem(foodRecipes);
     navBar.css("display", "flex");
     $("#invalidUser").hide();
@@ -873,7 +913,9 @@ $("#btnLogin").on('click',()=>{
   }
   
  })
- $("#userNameId").css({
+ 
+ if(!isVaild){
+$("#userNameId").css({
   "border":" 2px solid red",
   
  })
@@ -881,8 +923,12 @@ $("#btnLogin").on('click',()=>{
    "border":" 2px solid red",
   
  })
- $("#invalidUser").show();
+
+
+  $("#invalidUser").show();
 $("#invalidpass").show();
+ }
+ 
 })
 
 

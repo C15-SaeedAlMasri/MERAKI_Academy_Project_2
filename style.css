@@ -1,4 +1,4 @@
-/* ========== Resetting some styles ========== */
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -11,16 +11,17 @@ body {
   color: #333;
 }
 
-/* ========== Container Layout ========== */
+
 .container {
   display: flex;
   flex-direction: column;
   padding: 20px;
   max-width: 1200px;
   margin: auto;
+  position: sticky;
 }
 
-/* ========== Navbar ========== */
+
 .navClass {
   display: flex;
   justify-content: space-between;
@@ -50,7 +51,7 @@ body {
   border: 1px solid #ddd;
 }
 
-/* ========== Profile ========== */
+
 #profilePic img {
   width: 40px;
   height: 40px;
@@ -58,12 +59,12 @@ body {
   border: 2px solid #ff5722;
 }
 
-/* ========== Logo ========== */
+
 #imgLogo img {
   width: 120px;
 }
 
-/* ========== Dropdown ========== */
+
 .dropdown {
   display: flex;
   align-items: center;
@@ -76,7 +77,7 @@ body {
   border: 1px solid #ccc;
 }
 
-/* ========== Slider Section ========== */
+
 .sliderClass {
   display: flex;
   flex-direction: row;
@@ -120,9 +121,7 @@ body {
  
 
 
-/* ========== Item Grid Sections ========== */
 
-/* ========== Recipe Item Cards ========== */
 .OneItem {
   background-color: #fff;
   border: 2px solid #eee;
@@ -154,7 +153,7 @@ body {
   
 }
 
-/* ========== Favorite Button ========== */
+
 .fav-btn,
 .fav-btn-remove {
   background-color: #fffaf6;
@@ -191,7 +190,28 @@ input:focus {
   border-color: #ff5722;
 }
 
-
+select {
+  background-color: #fffaf6;
+  color: #ff5722;
+  border: 1px solid #ff5722;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+select option:hover {
+  background-color: #ff5722;  
+  color: #fffaf6;
+}
+select option:focus {
+  background-color: #ff5722;
+  color: #fffaf6;
+}
+#profilePic {
+  display: flex;
+  align-items: center; /* يحافظ على محاذاة الصورة */
+  margin: 0;
+  padding: 0;
+}
+ 
 @media (max-width: 768px) {
   .navClass,
   #menu {
